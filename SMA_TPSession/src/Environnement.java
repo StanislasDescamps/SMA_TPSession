@@ -10,12 +10,12 @@ public class Environnement {
 
     public Environnement(){
     	
-    	//Création des listes
+    	//CrÃ©ation des listes
     	aeroports = new ArrayList<Aeroport>();
     	avions = new ArrayList<Avion>();
     	balises = new ArrayList<Balise>();
     	
-    	//Remplissage de la liste des aéroports
+    	//Remplissage de la liste des aÃ©roports
     	aeroports.add(new Aeroport("Paris","ORY",null));
     	aeroports.add(new Aeroport("Lille","LIL",null));
     	aeroports.add(new Aeroport("Bordeaux","BOD",null));
