@@ -8,4 +8,12 @@ public class Avion extends Agent {
     private int carburant;
     private Scenario scenario;
     private Etat etat;
+    
+    public Avion(String nomAgent, String idAvion, int fuel, Scenario scene, Etat etat){
+    	super(nomAgent);
+    	this.callsign=idAvion;
+    	this.carburant=fuel;
+    	this.scenario=scene;
+    	this.etat=etat;
+    }
 }
