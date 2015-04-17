@@ -6,4 +6,9 @@ public class Balise {
 
     private String nom;
     private Aleas alea;
+    
+    public Balise(String nomBalise, Aleas statut){
+    	this.nom=nomBalise;
+    	this.alea=statut;
+    }
 }
