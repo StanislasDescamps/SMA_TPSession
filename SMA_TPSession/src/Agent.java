@@ -3,13 +3,13 @@
  */
 public class Agent {
     public String nomAgent;
-    
-    public Agent(String nomAgent){
-		this.nomAgent=nomAgent;
-	}
-    
-  //Getters and setters
-  	public String getNomAgent() {
-  		return nomAgent;
-  	}
+
+    public Agent(String nomAgent) {
+        this.nomAgent = nomAgent;
+    }
+
+    //Getters and setters
+    public String getNomAgent() {
+        return nomAgent;
+    }
 }

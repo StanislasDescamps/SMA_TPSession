@@ -1,5 +1,5 @@
 /**
- * Created by Metal-Mighty on 17/04/2015.
+ * Created by Florian Sainjeon on 17/04/2015.
  */
 public class MoteurInference {
 }

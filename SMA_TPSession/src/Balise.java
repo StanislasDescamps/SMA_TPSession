@@ -6,14 +6,14 @@ public class Balise {
 
     private String nom;
     private Aleas alea;
-    
-    public Balise(String nomBalise){
-    	this.nom=nomBalise;
-    	this.alea=Aleas.RAS;
+
+    public Balise(String nom) {
+        this.nom = nom;
+        this.alea = Aleas.RAS;
     }
-    
-    public Balise(String nomBalise, Aleas statut){
-    	this.nom=nomBalise;
-    	this.alea=statut;
+
+    public Balise(String nom, Aleas statut) {
+        this.nom = nom;
+        this.alea = statut;
     }
 }
