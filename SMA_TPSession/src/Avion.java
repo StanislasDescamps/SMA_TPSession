@@ -7,8 +7,8 @@ public class Avion extends Agent {
     private int carburant;
     private Scenario scenario;
     private Etat etat;
-    
-    public Avion(String nomAgent){
+
+	public Avion(String nomAgent){
     	super(nomAgent);
     	this.carburant=0;
     	//RandomScene();
@@ -21,4 +21,28 @@ public class Avion extends Agent {
     	this.scenario=scene;
     	this.etat=etat;
     }
+    
+    public int getCarburant() {
+		return carburant;
+	}
+
+	public void setCarburant(int carburant) {
+		this.carburant = carburant;
+	}
+
+	public Scenario getScenario() {
+		return scenario;
+	}
+
+	public void setScenario(Scenario scenario) {
+		this.scenario = scenario;
+	}
+
+	public Etat getEtat() {
+		return etat;
+	}
+
+	public void setEtat(Etat etat) {
+		this.etat = etat;
+	}
 }

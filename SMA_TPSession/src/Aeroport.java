@@ -7,7 +7,8 @@ import java.util.Random;
 public class Aeroport extends Agent {
     private String           IATACode;
     private ArrayList<Avion> enAttenteAtterissage;
-    private ArrayList<Avion> enAttenteDecollage;
+
+	private ArrayList<Avion> enAttenteDecollage;
 
     public Aeroport(String nomAgent, String idAero) {
         super(nomAgent);
@@ -26,4 +27,28 @@ public class Aeroport extends Agent {
     	}
     	return nextAeroport;
     }
+    
+    public String getIATACode() {
+		return IATACode;
+	}
+
+	public void setIATACode(String iATACode) {
+		IATACode = iATACode;
+	}
+
+	public ArrayList<Avion> getEnAttenteAtterissage() {
+		return enAttenteAtterissage;
+	}
+
+	public void setEnAttenteAtterissage(ArrayList<Avion> enAttenteAtterissage) {
+		this.enAttenteAtterissage = enAttenteAtterissage;
+	}
+
+	public ArrayList<Avion> getEnAttenteDecollage() {
+		return enAttenteDecollage;
+	}
+
+	public void setEnAttenteDecollage(ArrayList<Avion> enAttenteDecollage) {
+		this.enAttenteDecollage = enAttenteDecollage;
+	}
 }

@@ -9,7 +9,7 @@ public class Balise {
     private String nom;
     private Aleas  alea;
     private int    duree;
-    private ArrayList<Avion> listAvionPresent;
+   	private ArrayList<Avion> listAvionPresent;
 
     public Balise(String nom) {
         this.nom = nom;
@@ -31,11 +31,35 @@ public class Balise {
 
     }
 
-    public Aleas getAlea() {
-        return alea;
-    }
+    public int getDuree() {
+		return duree;
+	}
 
-    public String getNom() {
+	public void setDuree(int duree) {
+		this.duree = duree;
+	}
+
+	public ArrayList<Avion> getListAvionPresent() {
+		return listAvionPresent;
+	}
+
+	public void setListAvionPresent(ArrayList<Avion> listAvionPresent) {
+		this.listAvionPresent = listAvionPresent;
+	}
+
+	public String getNom() {
         return nom;
     }
+	
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	 public Aleas getAlea() {
+	    return alea;
+	 }
+
+	public void setAlea(Aleas alea) {
+		this.alea = alea;
+	}
 }
