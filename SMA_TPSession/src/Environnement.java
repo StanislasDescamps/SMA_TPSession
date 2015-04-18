@@ -5,7 +5,7 @@ import java.util.Random;
  * Created by Florian Sainjeon on 17/04/2015.
  */
 public class Environnement {
-    private ArrayList<Aeroport> aeroports;
+    public static ArrayList<Aeroport> aeroports;
     private ArrayList<Avion>    avions;
     private ArrayList<Balise>   balises;
 
@@ -87,6 +87,9 @@ public class Environnement {
         avions.add(new Avion("FR 999"));
         avions.add(new Avion("FR 020"));
         avions.add(new Avion("FR 330"));
+        
+       // Aeroport.initiateListDestination();
+        
     }
 
     public void run() {
@@ -110,6 +113,7 @@ public class Environnement {
 //            }
 
             // Bouge avions
+            
 
             // Traitement aeroports
 
