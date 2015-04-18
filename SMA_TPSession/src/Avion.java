@@ -2,7 +2,7 @@
  * Created by Florian Sainjeon on 17/04/2015.
  */
 public class Avion extends Agent {
-    private enum Etat {NOMINAL, AVARIE}
+    public enum Etat {NOMINAL, AVARIE}
 
     private int carburant;
     private Scenario scenario;
