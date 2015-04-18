@@ -5,27 +5,67 @@ import java.util.Random;
  * Created by Florian Sainjeon on 17/04/2015.
  */
 public class Environnement {
-    private ArrayList<Aeroport> aeroports;
-    private ArrayList<Avion>    avions;
-    private ArrayList<Balise>   balises;
+    public static final ArrayList<Aeroport> aeroports = new ArrayList<>();
+    public static final ArrayList<Avion>    avions    = new ArrayList<>();
+    public static final ArrayList<Balise>   balises   = new ArrayList<>();
+    public static final ArrayList<Scenario> scenarios = new ArrayList<>();
 
-    private       boolean isRunning            = false;
-    private final int     secondsBeforeRefresh = 1;
+    private boolean isRunning            = false;
+    private int     secondsBeforeRefresh = 1;
 
     public Environnement() {
+        remplirAeroports();
+        remplirBalises();
+        remplirAvions();
+        remplirScenarios();
+    }
 
-        //Création des listes
-        aeroports = new ArrayList<Aeroport>();
-        avions = new ArrayList<Avion>();
-        balises = new ArrayList<Balise>();
+    public void run() {
+        long lastTime, currentTime;
+        isRunning = true;
+        Random rand = new Random();
 
+        while (isRunning) {
+            lastTime = System.currentTimeMillis();
+
+            // Logic //////////////////////////////////////////////////////////////
+
+            // Cree un aleas aleatoire sur une balise, ou pas
+//            if (rand.nextInt(1) == 1) {
+//                int aleasIndex = rand.nextInt(Balise.Aleas.values().length - 1);
+//                int aleasDuree = rand.nextInt(4 - 2) + 1;
+//                int baliseIndex = rand.nextInt(balises.size() + 1);
+//
+//                if (balises.get(baliseIndex).getAlea() == Balise.Aleas.RAS)
+//                    balises.get(baliseIndex).changeAleas(aleasIndex, aleasDuree);
+//            }
+
+            // Bouge avions
+
+            // Traitement aeroports
+
+            // Logic end //////////////////////////////////////////////////////////
+
+            currentTime = System.currentTimeMillis();
+            if (currentTime < lastTime + secondsBeforeRefresh * 1000)
+                try {
+                    Thread.sleep(lastTime + secondsBeforeRefresh * 1000 - currentTime);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+        }
+    }
+
+    private void remplirAeroports() {
         //Remplissage de la liste des aéroports
         aeroports.add(new Aeroport("Paris", "ORY"));
         aeroports.add(new Aeroport("Lille", "LIL"));
         aeroports.add(new Aeroport("Bordeaux", "BOD"));
         aeroports.add(new Aeroport("Lyon", "LYS"));
         aeroports.add(new Aeroport("Nice", "NCE"));
+    }
 
+    private void remplirBalises() {
         //Remplissage de la liste des balises
         balises.add(new Balise("LIL-ORY-01"));
         balises.add(new Balise("LIL-ORY-02"));
@@ -76,7 +116,9 @@ public class Environnement {
         balises.add(new Balise("BOD-LYS-05"));
         balises.add(new Balise("BOD-LYS-06"));
         balises.add(new Balise("BOD-LYS-07"));
+    }
 
+    private void remplirAvions() {
         //Remplissage de la liste des avions
         avions.add(new Avion("AF 101"));
         avions.add(new Avion("AF 202"));
@@ -89,39 +131,7 @@ public class Environnement {
         avions.add(new Avion("FR 330"));
     }
 
-    public void run() {
-        long lastTime, currentTime;
-        isRunning = true;
-        Random rand = new Random();
+    private void remplirScenarios() {
 
-        while (isRunning) {
-            lastTime = System.currentTimeMillis();
-
-            // Logic //////////////////////////////////////////////////////////////
-
-            // Cree un aleas aleatoire sur une balise, ou pas
-//            if (rand.nextInt(1) == 1) {
-//                int aleasIndex = rand.nextInt(Balise.Aleas.values().length - 1);
-//                int aleasDuree = rand.nextInt(4 - 2) + 1;
-//                int baliseIndex = rand.nextInt(balises.size() + 1);
-//
-//                if (balises.get(baliseIndex).getAlea() == Balise.Aleas.RAS)
-//                    balises.get(baliseIndex).changeAleas(aleasIndex, aleasDuree);
-//            }
-
-            // Bouge avions
-
-            // Traitement aeroports
-
-            // Logic end //////////////////////////////////////////////////////////
-
-            currentTime = System.currentTimeMillis();
-            if (currentTime < lastTime + secondsBeforeRefresh * 1000)
-                try {
-                    Thread.sleep(lastTime + secondsBeforeRefresh * 1000 - currentTime);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-        }
     }
 }

@@ -29,4 +29,8 @@ public class Balise {
     public Aleas getAlea() {
         return alea;
     }
+
+    public String getNom() {
+        return nom;
+    }
 }
