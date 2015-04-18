@@ -8,7 +8,6 @@ public class Aeroport extends Agent {
     private String           IATACode;
     private ArrayList<Avion> enAttenteAtterissage;
     private ArrayList<Avion> enAttenteDecollage;
-    //public ArrayList<String> listDestination;
 
     public Aeroport(String nomAgent, String idAero) {
         super(nomAgent);
