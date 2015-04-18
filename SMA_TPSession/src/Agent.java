@@ -12,4 +12,8 @@ public class Agent {
     public String getNomAgent() {
         return nomAgent;
     }
+
+    public void nextAction() {
+
+    }
 }

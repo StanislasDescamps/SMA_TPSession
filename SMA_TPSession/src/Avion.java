@@ -4,7 +4,6 @@
 public class Avion extends Agent {
     private enum Etat {NOMINAL, AVARIE}
 
-   
     private int carburant;
     private Scenario scenario;
     private Etat etat;

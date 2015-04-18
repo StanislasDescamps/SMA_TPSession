@@ -4,12 +4,15 @@ import java.util.ArrayList;
  * Created by Florian Sainjeon on 17/04/2015.
  */
 public class Aeroport extends Agent {
-    private String IATACode;
-    private ArrayList<Avion> enAttente;
+    private String           IATACode;
+    private ArrayList<Avion> enAttenteAtterissage;
+    private ArrayList<Avion> enAttenteDecollage;
 
-    public Aeroport(String nomAgent, String idAero, ArrayList<Avion> attente) {
+    public Aeroport(String nomAgent, String idAero) {
         super(nomAgent);
         this.IATACode = idAero;
-        this.enAttente = attente;
+        this.enAttenteAtterissage = new ArrayList<>();
+        this.enAttenteDecollage = new ArrayList<>();
+
     }
 }

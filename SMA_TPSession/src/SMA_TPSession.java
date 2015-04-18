@@ -3,6 +3,7 @@
  */
 public class SMA_TPSession {
     public static void main(String[] args) {
-
+        Environnement env = new Environnement();
+        env.run();
     }
 }
