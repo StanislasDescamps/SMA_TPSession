@@ -36,8 +36,8 @@ public class Environnement {
 //                int aleasDuree = rand.nextInt(4 - 2) + 1;
 //                int baliseIndex = rand.nextInt(balises.size() + 1);
 //
-//                if (balises.get(baliseIndex).getAleas() == Balise.Aleas.RAS)
-//                    balises.get(baliseIndex).changeAleas(aleasIndex, aleasDuree);
+//                if (balises.get(baliseIndex).getAlea() == Balise.Aleas.RAS)
+//                    balises.get(baliseIndex).changeAlea(aleasIndex, aleasDuree);
 //            }
 
             // Bouge avions
