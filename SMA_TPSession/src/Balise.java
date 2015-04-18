@@ -26,7 +26,7 @@ public class Balise {
 
     }
 
-    public Aleas getAlea() {
+    public Aleas getAleas() {
         return alea;
     }
 

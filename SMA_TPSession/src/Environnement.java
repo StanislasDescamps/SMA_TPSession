@@ -36,12 +36,14 @@ public class Environnement {
 //                int aleasDuree = rand.nextInt(4 - 2) + 1;
 //                int baliseIndex = rand.nextInt(balises.size() + 1);
 //
-//                if (balises.get(baliseIndex).getAlea() == Balise.Aleas.RAS)
+//                if (balises.get(baliseIndex).getAleas() == Balise.Aleas.RAS)
 //                    balises.get(baliseIndex).changeAleas(aleasIndex, aleasDuree);
 //            }
 
             // Bouge avions
-
+            for (Avion avion : avions) {
+               avion.bouge();
+            }
             // Traitement aeroports
 
             // Logic end //////////////////////////////////////////////////////////
@@ -76,6 +78,7 @@ public class Environnement {
         balises.add(new Balise("LIL-BOD-04"));
         balises.add(new Balise("LIL-BOD-05"));
         balises.add(new Balise("LIL-BOD-06"));
+        balises.add(new Balise("LIL-BOD-07"));
 
         balises.add(new Balise("LIL-LYS-01"));
         balises.add(new Balise("LIL-LYS-02"));
@@ -132,6 +135,23 @@ public class Environnement {
     }
 
     private void remplirScenarios() {
-
+        scenarios.add(new Scenario("LIL", "LYS"));
+        scenarios.add(new Scenario("LIL", "ORY"));
+        scenarios.add(new Scenario("LIL", "BOD"));
+        scenarios.add(new Scenario("BOD", "LIL"));
+        scenarios.add(new Scenario("BOD", "ORY"));
+        scenarios.add(new Scenario("BOD", "LYS"));
+        scenarios.add(new Scenario("BOD", "NCE"));
+        scenarios.add(new Scenario("ORY", "BOD"));
+        scenarios.add(new Scenario("ORY", "LIL"));
+        scenarios.add(new Scenario("ORY", "LYS"));
+        scenarios.add(new Scenario("ORY", "NCE"));
+        scenarios.add(new Scenario("LYS", "LIL"));
+        scenarios.add(new Scenario("LYS", "ORY"));
+        scenarios.add(new Scenario("LYS", "NCE"));
+        scenarios.add(new Scenario("LYS", "BOD"));
+        scenarios.add(new Scenario("NCE", "LYS"));
+        scenarios.add(new Scenario("NCE", "ORY"));
+        scenarios.add(new Scenario("NCE", "BOD"));
     }
 }
