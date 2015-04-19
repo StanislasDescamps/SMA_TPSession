@@ -31,22 +31,39 @@ public class Environnement {
             // Logic //////////////////////////////////////////////////////////////
 
             // Cree un aleas aleatoire sur une balise, ou pas
-//            if (rand.nextInt(1) == 1) {
-//                int aleasIndex = rand.nextInt(Balise.Aleas.values().length - 1);
-//                int aleasDuree = rand.nextInt(4 - 2) + 1;
-//                int baliseIndex = rand.nextInt(balises.size() + 1);
-//
-//                if (balises.get(baliseIndex).getAleas() == Balise.Aleas.RAS)
-//                    balises.get(baliseIndex).changeAleas(aleasIndex, aleasDuree);
-//            }
+            if (rand.nextInt(1) == 1) {
+                int aleasIndex = rand.nextInt(Balise.Aleas.values().length - 1);
+                int aleasDuree = rand.nextInt(4 - 2) + 1;
+                int baliseIndex = rand.nextInt(balises.size() + 1);
+
+                if (balises.get(baliseIndex).getAleas() == Balise.Aleas.RAS)
+                    balises.get(baliseIndex).changeAleas(aleasIndex, aleasDuree);
+            }
+
+            // Traitement aeroports
+
+            // Tri des avions a l'arrivee (carburant + etat)
+            MoteurInference.Priorite();
+
+            // Atterrissage d'un avion et placement dans liste de decollage
+            for (Aeroport aeroport : aeroports) {
+                if (!aeroport.getEnAttenteAtterissage().isEmpty()) {
+                    aeroport.getEnAttenteAtterissage().get(0).setScenario(
+                            new Scenario(
+                                    aeroport.getIATACode(),
+                                    Aeroport.nextDestination(aeroport.getIATACode())
+                            ));
+                    aeroport.getEnAttenteDecollage().add(aeroport.getEnAttenteAtterissage().get(0));
+                    aeroport.getEnAttenteAtterissage().remove(0);
+//                    System.out.println(aeroport.getEnAttenteDecollage().get(0).getNomAgent() + " est bien arrivï¿½ ï¿½ " + aeroport.getNomAgent() + ". Il repartira bientot pour " + nextDestination);
+                }
+            }
 
             // Bouge avions
             for (Avion avion : avions) {
-               //avion.bouge();
+                //avion.bouge();
             }
-            // Traitement aeroports
-            	//Traitement des arrivées
-            	MoteurInference.Priorite();
+
             // Logic end //////////////////////////////////////////////////////////
 
             currentTime = System.currentTimeMillis();
