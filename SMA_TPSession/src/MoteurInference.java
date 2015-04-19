@@ -39,9 +39,9 @@ public class MoteurInference {
 			//Attribution de la nouvelle liste a la liste d'avion en attente a l'atterissage
 			aero.setEnAttenteAtterissage(nouvelleListe);
 			//Le premier atteri pret à decoller
-			aero.getEnAttenteDecollage().add(nouvelleListe.get(0));
+			aero.getEnAttenteDecollage().add(aero.getEnAttenteAtterissage().get(0));
 			//Suppression de ce meme avion de la liste des atterissages
-			aero.getEnAttenteAtterissage().remove(nouvelleListe.get(0));
+			aero.getEnAttenteAtterissage().remove(aero.getEnAttenteAtterissage().get(0));
 		}
 	}
 	/*
