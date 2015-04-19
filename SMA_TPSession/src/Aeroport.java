@@ -19,7 +19,7 @@ public class Aeroport extends Agent {
 
         String nextAeroport = nomAeroport;
         while (nextAeroport.equals(nomAeroport)) {
-            nextAeroport = Environnement.aeroports.get(rand.nextInt(4)).getNomAgent();
+            nextAeroport = Environnement.aeroports.get(rand.nextInt(4)).getIATACode();
         }
         return nextAeroport;
     }
