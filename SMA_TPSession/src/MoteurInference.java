@@ -20,14 +20,12 @@ public class MoteurInference {
 						}	
 					}
 					//Priorite 2: niveau de carburant
-					int nivBasCarburant=aero.getEnAttenteAtterissage().get(0).getCarburant();
-					Avion tampon=null;
+					Avion tampon=aero.getEnAttenteAtterissage().get(0);
 					while(aero.getEnAttenteAtterissage()!=null){
 						for (Avion avion:aero.getEnAttenteAtterissage()) {
-							// Teste si 2 éléments successifs sont dans le bon ordre ou non
-							if (avion.getCarburant() <= nivBasCarburant) {
-								// s'ils ne le sont pas, on échange leurs positions
-								nivBasCarburant=avion.getCarburant();
+							// Teste si le niveau de carburant dans le tampon est bien le plus faible
+							if (avion.getCarburant() < tampon.getCarburant()) {
+								// si non on change le tampon pour qu'il devienne le plus faible et sois prioritaire
 								tampon=avion;
 							}
 						}
@@ -40,7 +38,7 @@ public class MoteurInference {
 		}
 		
 	}
-	
+	/*
 	public static ArrayList<Avion> triAvionParCarbuantCroissant(ArrayList<Avion> list) {
 		int longueur = list.size();
 		Avion tampon;
@@ -62,6 +60,6 @@ public class MoteurInference {
 			}
 		} while (permut);
 		return nouvelleListe;
-	}
+	}*/
 	
 }
