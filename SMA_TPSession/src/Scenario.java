@@ -45,8 +45,12 @@ public class Scenario {
         balisesPassees = new ArrayList<>();
     }
 
-    public ArrayList<Balise> getBalises() { return balises; }
+    public ArrayList<Balise> getBalises() {
+        return balises;
+    }
 
-    public ArrayList<Balise> getBalisesPassees() { return balisesPassees; }
+    public ArrayList<Balise> getBalisesPassees() {
+        return balisesPassees;
+    }
 }
 

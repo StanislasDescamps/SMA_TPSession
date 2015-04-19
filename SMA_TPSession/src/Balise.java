@@ -6,23 +6,23 @@ import java.util.ArrayList;
 public class Balise {
     public enum Aleas {RAS, ORAGE, CRASH, TURBULENCES, ATTERISSAGEFORCE}
 
-    private String nom;
-    private Aleas  alea;
-    private int    duree;
-   	private ArrayList<Avion> listAvionPresent;
+    private String           nom;
+    private Aleas            alea;
+    private int              duree;
+    private ArrayList<Avion> listAvionPresent;
 
     public Balise(String nom) {
         this.nom = nom;
         this.alea = Aleas.RAS;
         this.duree = 0;
-        this.listAvionPresent=new ArrayList<>();
+        this.listAvionPresent = new ArrayList<>();
     }
 
     public Balise(String nom, Aleas statut, int duree, ArrayList<Avion> avionPresents) {
         this.nom = nom;
         this.alea = statut;
         this.duree = duree;
-        this.listAvionPresent=avionPresents;
+        this.listAvionPresent = avionPresents;
     }
 
     public void changeAlea(int indexAlea, int duree) {
@@ -37,28 +37,28 @@ public class Balise {
     public void setAlea(Aleas alea) {
         this.alea = alea;
     }
-    
+
     public int getDuree() {
-		return duree;
-	}
+        return duree;
+    }
 
-	public void setDuree(int duree) {
-		this.duree = duree;
-	}
+    public void setDuree(int duree) {
+        this.duree = duree;
+    }
 
-	public ArrayList<Avion> getListAvionPresent() {
-		return listAvionPresent;
-	}
+    public ArrayList<Avion> getListAvionPresent() {
+        return listAvionPresent;
+    }
 
-	public void setListAvionPresent(ArrayList<Avion> listAvionPresent) {
-		this.listAvionPresent = listAvionPresent;
-	}
+    public void setListAvionPresent(ArrayList<Avion> listAvionPresent) {
+        this.listAvionPresent = listAvionPresent;
+    }
 
-	public String getNom() {
+    public String getNom() {
         return nom;
     }
-	
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 }

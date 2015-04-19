@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MoteurInference {
-	private static Random rand = new Random();
+    private static Random rand = new Random();
 
-	public static void Priorite() {
+    public static void Priorite() {
 
-		for (Aeroport aeroport : Environnement.aeroports) {
-			ArrayList<Avion> listeOrdonnee = new ArrayList<>();
+        for (Aeroport aeroport : Environnement.aeroports) {
+            ArrayList<Avion> listeOrdonnee = new ArrayList<>();
             if (!aeroport.getEnAttenteAtterissage().isEmpty()) {
                 if (aeroport.getEnAttenteAtterissage().size() > 1) {
                     //Priorite 1:Avarie
@@ -49,5 +49,4 @@ public class MoteurInference {
         }
         return listeOrdonnee;
     }
-	
 }

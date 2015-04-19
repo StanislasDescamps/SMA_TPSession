@@ -24,37 +24,34 @@ public class Avion extends Agent {
     public void bouge() {
         scenario.nouvelleBalise();
 
-        if (scenario.getBaliseActuelle().getAlea() != Balise.Aleas.RAS)
-            MoteurInference.gestionAleasAvion(this, scenario.getBaliseActuelle().getAlea());
-
         carburant -= 1;
     }
 
     public void demiTour() {
         scenario.demiTour();
     }
-    
+
     public int getCarburant() {
-		return carburant;
-	}
+        return carburant;
+    }
 
     public void diminueCarburant(int diminution) {
         this.carburant -= diminution;
     }
 
-	public Scenario getScenario() {
-		return scenario;
-	}
+    public Scenario getScenario() {
+        return scenario;
+    }
 
-	public void setScenario(Scenario scenario) {
-		this.scenario = scenario;
-	}
+    public void setScenario(Scenario scenario) {
+        this.scenario = scenario;
+    }
 
-	public Etat getEtat() {
-		return etat;
-	}
+    public Etat getEtat() {
+        return etat;
+    }
 
-	public void setEtat(Etat etat) {
-		this.etat = etat;
-	}
+    public void setEtat(Etat etat) {
+        this.etat = etat;
+    }
 }
