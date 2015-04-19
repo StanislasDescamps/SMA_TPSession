@@ -8,10 +8,10 @@ public class MoteurInference {
 	public void Priorite(){
 		
 		for(Aeroport aero :Environnement.aeroports){
-			
+			ArrayList<Avion> nouvelleListe=new ArrayList<>();
 			if(aero.getEnAttenteAtterissage().size()>1){
 				while(aero.getEnAttenteAtterissage()!=null){
-					ArrayList<Avion> nouvelleListe=new ArrayList<>();
+					
 					//Priorite 1:Avarie
 					for(Avion avion: aero.getEnAttenteAtterissage()){
 						if(avion.getEtat()==Avion.Etat.AVARIE){
@@ -29,14 +29,20 @@ public class MoteurInference {
 								tampon=avion;
 							}
 						}
+						//A la fin de la boucle l'avion avec le carburant le plus faible est ajouter à la nouvelle liste puis supprimer de la liste des attentes atterissage
 						nouvelleListe.add(tampon);
 						aero.getEnAttenteAtterissage().remove(tampon);
 					}	
 					
 				}
 			}
+			//Attribution de la nouvelle liste a la liste d'avion en attente a l'atterissage
+			aero.setEnAttenteAtterissage(nouvelleListe);
+			//Le premier atteri pret à decoller
+			aero.getEnAttenteDecollage().add(nouvelleListe.get(0));
+			//Suppression de ce meme avion de la liste des atterissages
+			aero.getEnAttenteAtterissage().remove(nouvelleListe.get(0));
 		}
-		
 	}
 	/*
 	public static ArrayList<Avion> triAvionParCarbuantCroissant(ArrayList<Avion> list) {
