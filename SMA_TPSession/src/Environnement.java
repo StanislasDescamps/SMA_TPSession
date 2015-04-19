@@ -26,11 +26,20 @@ public class Environnement {
             lastTime = System.currentTimeMillis();
 
             // Logic //////////////////////////////////////////////////////////////
+            System.out.println("/////////////////////////////////////////////////////////////////////////////");
+            // Cree un aleas aleatoire sur une balise, ou pas
+            if (rand.nextInt(2) == 1) {
+                int aleasIndex = rand.nextInt(Balise.Aleas.values().length - 1);
+                int aleasDuree = rand.nextInt(4 - 2) + 1;
+                int baliseIndex = rand.nextInt(balises.size());
+
+                if (balises.get(baliseIndex).getAlea() == Balise.Aleas.RAS)
+                    balises.get(baliseIndex).changeAlea(aleasIndex, aleasDuree);
+            }
 
             // Traitement aeroports
-
             // Tri des avions a l'arrivee (carburant + etat)
-            MoteurInference.Priorite();
+            MoteurInference.prioriteArrivee();
 
             // Atterrissage d'un avion et placement dans liste de decollage
             for (Aeroport aeroport : aeroports) {
@@ -42,13 +51,25 @@ public class Environnement {
                             ));
                     aeroport.getEnAttenteDecollage().add(aeroport.getEnAttenteAtterissage().get(0));
                     aeroport.getEnAttenteAtterissage().remove(0);
-//                    System.out.println(aeroport.getEnAttenteDecollage().get(0).getNomAgent() + " est bien arriv� � " + aeroport.getNomAgent() + ". Il repartira bientot pour " + nextDestination);
+// System.out.println(aeroport.getEnAttenteDecollage().get(0).getNomAgent() + " est bien arriv� � " + aeroport.getNomAgent() + ". Il repartira bientot pour " + nextDestination);
                 }
             }
 
             // Bouge avions
+            for (Aeroport aeroport : aeroports)
+                if (!aeroport.getEnAttenteDecollage().isEmpty()) {
+                    aeroport.getEnAttenteDecollage().get(0).setEtat(Avion.Etat.NOMINAL);
+                    System.out.println("[" + aeroport.getEnAttenteDecollage().get(0).getNomAgent() + "] "
+                                       + aeroport.getEnAttenteDecollage().get(0).getScenario().getDepart()
+                                       + "-"
+                                       + aeroport.getEnAttenteDecollage().get(0).getScenario().getArrivee() +
+                                       " pret a partir."
+                                      );
+                    aeroport.getEnAttenteDecollage().remove(0);
+                }
+
             for (Avion avion : avions) {
-                //avion.bouge();
+                avion.bouge();
             }
 
             // Logic end //////////////////////////////////////////////////////////
@@ -84,6 +105,15 @@ public class Environnement {
         balises.add(new Balise("LIL-BOD-05"));
         balises.add(new Balise("LIL-BOD-06"));
         balises.add(new Balise("LIL-BOD-07"));
+
+        balises.add(new Balise("LIL-NCE-01"));
+        balises.add(new Balise("LIL-NCE-02"));
+        balises.add(new Balise("LIL-NCE-03"));
+        balises.add(new Balise("LIL-NCE-04"));
+        balises.add(new Balise("LIL-NCE-05"));
+        balises.add(new Balise("LIL-NCE-06"));
+        balises.add(new Balise("LIL-NCE-07"));
+
 
         balises.add(new Balise("LIL-LYS-01"));
         balises.add(new Balise("LIL-LYS-02"));
@@ -128,21 +158,22 @@ public class Environnement {
 
     private void remplirAvions() {
         //Remplissage de la liste des avions
-        avions.add(new Avion("AF 101"));
-        avions.add(new Avion("AF 202"));
-        avions.add(new Avion("AF 103"));
-        avions.add(new Avion("AF 880"));
-        avions.add(new Avion("FR 325"));
-        avions.add(new Avion("FR 001"));
-        avions.add(new Avion("FR 999"));
-        avions.add(new Avion("FR 020"));
-        avions.add(new Avion("FR 330"));
+        avions.add(new Avion("AF 101", new Scenario("ORY", "LIL")));
+        avions.add(new Avion("AF 202", new Scenario("LYS", "LIL")));
+        avions.add(new Avion("AF 103", new Scenario("LIL", "LYS")));
+        avions.add(new Avion("AF 880", new Scenario("BOD", "NCE")));
+        avions.add(new Avion("FR 325", new Scenario("NCE", "ORY")));
+        avions.add(new Avion("FR 001", new Scenario("ORY", "BOD")));
+        avions.add(new Avion("FR 999", new Scenario("NCE", "LYS")));
+        avions.add(new Avion("FR 020", new Scenario("BOD", "LIL")));
+        avions.add(new Avion("FR 330", new Scenario("ORY", "NCE")));
     }
 
     private void remplirScenarios() {
         scenarios.add(new Scenario("LIL", "LYS"));
         scenarios.add(new Scenario("LIL", "ORY"));
         scenarios.add(new Scenario("LIL", "BOD"));
+        scenarios.add(new Scenario("LIL", "NCE"));
         scenarios.add(new Scenario("BOD", "LIL"));
         scenarios.add(new Scenario("BOD", "ORY"));
         scenarios.add(new Scenario("BOD", "LYS"));
@@ -158,5 +189,6 @@ public class Environnement {
         scenarios.add(new Scenario("NCE", "LYS"));
         scenarios.add(new Scenario("NCE", "ORY"));
         scenarios.add(new Scenario("NCE", "BOD"));
+        scenarios.add(new Scenario("NCE", "LIL"));
     }
 }

@@ -6,51 +6,71 @@ import java.util.Collections;
  */
 
 public class Scenario {
+
     private String            depart;
     private String            arrivee;
-    private ArrayList<Balise> balises;
+    private ArrayList<Balise> prochainesBalises;
     private ArrayList<Balise> balisesPassees;
+    private Balise            baliseActuelle;
 
     public Scenario(String depart, String arrivee) {
         this.depart = depart;
         this.arrivee = arrivee;
-        balises = new ArrayList<>();
+        this.prochainesBalises = new ArrayList<>();
+        this.balisesPassees = new ArrayList<>();
+        this.baliseActuelle = new Balise(depart);
 
         for (Balise b : Environnement.balises)
             if (b.getNom().contains(depart) && b.getNom().contains(arrivee)) {
-                balises.add(b);
+                prochainesBalises.add(b);
             }
 
-        if (balises.get(0).getNom().split("-")[0].equals(arrivee)) {
+        if (prochainesBalises.get(0).getNom().split("-")[0].equals(arrivee)) {
             inverserListeBalises();
         }
     }
 
-    public void nouvelleBalise() {
-        balisesPassees.add(balises.get(0));
-        balises.remove(0);
+    public boolean nouvelleBalise() {
+        if (!prochainesBalises.isEmpty()) {
+            System.out.println("Balise changee de "+ baliseActuelle.getNom() +" a "+ prochainesBalises.get(0).getNom());
+            if (baliseActuelle.getNom().matches("[A-Z]{3}-[A-Z]{3}-\\d{2}"))
+                balisesPassees.add(baliseActuelle);
+
+            baliseActuelle = prochainesBalises.get(0);
+
+            return true;
+        } else
+            return false;
     }
 
     public Balise getBaliseActuelle() {
-        return balises.get(0);
+        return prochainesBalises.get(0);
     }
 
     private void inverserListeBalises() {
-        Collections.reverse(balises);
+        Collections.reverse(prochainesBalises);
     }
 
     public void demiTour() {
-        balises = new ArrayList<>(balisesPassees);
+        prochainesBalises = new ArrayList<>(balisesPassees);
         inverserListeBalises();
         balisesPassees = new ArrayList<>();
     }
 
-    public ArrayList<Balise> getBalises() {
-        return balises;
+    public ArrayList<Balise> getProchainesBalises() {
+        return prochainesBalises;
     }
 
     public ArrayList<Balise> getBalisesPassees() {
         return balisesPassees;
+    }
+
+    public String getDepart() {
+        return depart;
+    }
+
+    public String getArrivee() {
+        return arrivee;
     }
 }
 

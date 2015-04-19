@@ -1,8 +1,6 @@
-/**
- * Created by Florian Sainjeon on 17/04/2015.
- */
+
 public class Avion extends Agent {
-    public enum Etat {NOMINAL, AVARIE}
+    public enum Etat {NOMINAL, AVARIE, ATTENTE}
 
     private int      carburant;
     private Scenario scenario;
@@ -21,14 +19,43 @@ public class Avion extends Agent {
         this.etat = etat;
     }
 
-    public void bouge() {
-        scenario.nouvelleBalise();
+    public Avion(String nomAgent, Scenario scenario) {
+        super(nomAgent);
+        this.carburant = 10;
+        this.scenario = scenario;
+        this.etat = Etat.ATTENTE;
+        for (Aeroport aeroport : Environnement.aeroports) {
+            if (aeroport.getIATACode().equals(this.scenario.getDepart()))
+                aeroport.getEnAttenteDecollage().add(this);
+        }
+    }
 
-        carburant -= 1;
+    public void bouge() {
+        if (etat != Etat.ATTENTE) {
+            if (scenario.nouvelleBalise()) {
+                if (scenario.getBaliseActuelle().getAlea() != Balise.Aleas.RAS)
+                    MoteurInference.gestionAleasAvion(this, scenario.getBaliseActuelle().getAlea());
+
+//                System.out.println("L'avion ["+ nomAgent +"] "+ scenario.getDepart() +"-"+ scenario.getArrivee()
+//                                   +" bouge de "+ scenario.getBalisesPassees().get(scenario.getBalisesPassees().size()-1).getNom()
+//                                   +" a "+ scenario.getProchainesBalises().get(0).getNom());
+                carburant -= 1;
+                scenario.getProchainesBalises().remove(0);
+            } else {
+                for (Aeroport aeroport : Environnement.aeroports)
+                    if (aeroport.getIATACode().equals(scenario.getArrivee())) {
+                        aeroport.getEnAttenteAtterissage().add(this);
+                        this.etat = Etat.ATTENTE;
+                        System.out.println("L'avion ["+ nomAgent +"] "+ scenario.getDepart() +"-"+ scenario.getArrivee() +" est en attente pour atterir.");
+                        break;
+                    }
+            }
+        }
     }
 
     public void demiTour() {
         scenario.demiTour();
+        System.out.println("L'avion ["+ nomAgent +"] "+ scenario.getDepart() +"-"+ scenario.getArrivee() +" fait demi-tour.");
     }
 
     public int getCarburant() {
