@@ -42,10 +42,11 @@ public class Environnement {
 
             // Bouge avions
             for (Avion avion : avions) {
-               avion.bouge();
+               //avion.bouge();
             }
             // Traitement aeroports
-
+            	//Traitement des arrivées
+            	MoteurInference.Priorite();
             // Logic end //////////////////////////////////////////////////////////
 
             currentTime = System.currentTimeMillis();

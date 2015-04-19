@@ -17,7 +17,7 @@ public class Aeroport extends Agent {
     }
     
     //Choisit aleatoirement une nouvelle destination
-    public String nextDestination(String nomAeroport){
+    public static String nextDestination(String nomAeroport){
     	Random rand=new Random();
     	
     	String nextAeroport=nomAeroport;	
