@@ -1,14 +1,13 @@
 import java.util.ArrayList;
+import java.util.Random;
 
-/**
- * Created by Florian Sainjeon on 17/04/2015.
- */
 public class MoteurInference {
+	private static Random rand = new Random();
 
-    public static void Priorite() {
+	public static void Priorite() {
 
-        for (Aeroport aeroport : Environnement.aeroports) {
-            ArrayList<Avion> listeOrdonnee = new ArrayList<>();
+		for (Aeroport aeroport : Environnement.aeroports) {
+			ArrayList<Avion> listeOrdonnee = new ArrayList<>();
             if (!aeroport.getEnAttenteAtterissage().isEmpty()) {
                 if (aeroport.getEnAttenteAtterissage().size() > 1) {
                     //Priorite 1:Avarie
@@ -50,29 +49,5 @@ public class MoteurInference {
         }
         return listeOrdonnee;
     }
-
-    /*
-    public static ArrayList<Avion> triAvionParCarbuantCroissant(ArrayList<Avion> list) {
-		int longueur = list.size();
-		Avion tampon;
-		boolean permut;
-		ArrayList<Avion> nouvelleListe = new ArrayList<>();
- 
-		do {
-			// hypoth�se : l'arraylist est tri�
-			permut = false;
-			for (int i = 0; i < longueur - 1; i++) {
-				// Teste si 2 �l�ments successifs sont dans le bon ordre ou non
-				if (list.get(i).getCarburant() > list.get(i+1).getCarburant()) {
-					// s'ils ne le sont pas, on �change leurs positions
-					tampon = list.get(i);
-					list.remove(list.get(i));
-					list.add(tampon);
-					permut = true;
-				}
-			}
-		} while (permut);
-		return nouvelleListe;
-	}*/
-
+	
 }

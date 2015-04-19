@@ -25,13 +25,12 @@ public class Balise {
         this.listAvionPresent=avionPresents;
     }
 
-    public void changeAleas (int indexAleas, int duree) {
-        this.alea = Aleas.values()[indexAleas];
+    public void changeAlea(int indexAlea, int duree) {
+        this.alea = Aleas.values()[indexAlea];
         this.duree = duree;
-
     }
 
-    public Aleas getAleas() {
+    public Aleas getAlea() {
         return alea;
     }
 

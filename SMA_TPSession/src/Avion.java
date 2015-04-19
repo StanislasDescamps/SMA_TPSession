@@ -4,31 +4,43 @@
 public class Avion extends Agent {
     public enum Etat {NOMINAL, AVARIE}
 
-    private int carburant;
+    private int      carburant;
     private Scenario scenario;
-    private Etat etat;
+    private Etat     etat;
 
-	public Avion(String nomAgent){
-    	super(nomAgent);
-    	this.carburant=0;
-    	//RandomScene();
-    	this.etat=Etat.NOMINAL;
+    public Avion(String nomAgent) {
+        super(nomAgent);
+        this.carburant = 0;
+        this.etat = Etat.NOMINAL;
     }
-    
-    public Avion(String nomAgent, int fuel, Scenario scene, Etat etat){
-    	super(nomAgent);
-    	this.carburant=fuel;
-    	this.scenario=scene;
-    	this.etat=etat;
+
+    public Avion(String nomAgent, int fuel, Scenario scene, Etat etat) {
+        super(nomAgent);
+        this.carburant = fuel;
+        this.scenario = scene;
+        this.etat = etat;
+    }
+
+    public void bouge() {
+        scenario.nouvelleBalise();
+
+        if (scenario.getBaliseActuelle().getAlea() != Balise.Aleas.RAS)
+            MoteurInference.gestionAleasAvion(this, scenario.getBaliseActuelle().getAlea());
+
+        carburant -= 1;
+    }
+
+    public void demiTour() {
+        scenario.demiTour();
     }
     
     public int getCarburant() {
 		return carburant;
 	}
 
-	public void setCarburant(int carburant) {
-		this.carburant = carburant;
-	}
+    public void diminueCarburant(int diminution) {
+        this.carburant -= diminution;
+    }
 
 	public Scenario getScenario() {
 		return scenario;

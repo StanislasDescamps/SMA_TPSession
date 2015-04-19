@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Created by Florian Sainjeon on 17/04/2015.
- */
 public class Environnement {
     public static final ArrayList<Aeroport> aeroports = new ArrayList<>();
     public static final ArrayList<Avion>    avions    = new ArrayList<>();
