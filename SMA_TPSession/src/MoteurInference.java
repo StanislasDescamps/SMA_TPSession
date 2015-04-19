@@ -5,7 +5,7 @@ import java.util.ArrayList;
  */
 public class MoteurInference {
 	
-	public void Priorite(){
+	public static void Priorite(){
 		
 		for(Aeroport aero :Environnement.aeroports){
 			ArrayList<Avion> nouvelleListe=new ArrayList<>();
@@ -35,13 +35,19 @@ public class MoteurInference {
 					}	
 					
 				}
+				//Attribution de la nouvelle liste a la liste d'avion en attente a l'atterissage
+				aero.setEnAttenteAtterissage(nouvelleListe);
+				//Le premier atteri pret à decoller
+				aero.getEnAttenteDecollage().add(aero.getEnAttenteAtterissage().get(0));
+				//Suppression de ce meme avion de la liste des atterissages
+				aero.getEnAttenteAtterissage().remove(aero.getEnAttenteAtterissage().get(0));
+				System.out.println(aero.getEnAttenteAtterissage().get(0).getNomAgent()+" est bien arrivé à "+aero.getNomAgent()/*+". Il repartira bientot pour "+ Aeroport.nextDestination(aero.getNomAgent())*/);
+			}else if(aero.getEnAttenteAtterissage().size()==1){
+				aero.getEnAttenteDecollage().add(aero.getEnAttenteAtterissage().get(0));
+				//Suppression de ce meme avion de la liste des atterissages
+				aero.getEnAttenteAtterissage().remove(aero.getEnAttenteAtterissage().get(0));
+				System.out.println(aero.getEnAttenteAtterissage().get(0).getNomAgent()+" est bien arrivé à "+aero.getNomAgent()/*+". Il repartira bientot pour "+ Aeroport.nextDestination(aero.getNomAgent())*/);
 			}
-			//Attribution de la nouvelle liste a la liste d'avion en attente a l'atterissage
-			aero.setEnAttenteAtterissage(nouvelleListe);
-			//Le premier atteri pret à decoller
-			aero.getEnAttenteDecollage().add(aero.getEnAttenteAtterissage().get(0));
-			//Suppression de ce meme avion de la liste des atterissages
-			aero.getEnAttenteAtterissage().remove(aero.getEnAttenteAtterissage().get(0));
 		}
 	}
 	/*
