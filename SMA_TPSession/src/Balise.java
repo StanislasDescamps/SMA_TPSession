@@ -28,7 +28,6 @@ public class Balise {
     public void changeAlea(int indexAlea, int duree) {
         this.alea = Aleas.values()[indexAlea];
         this.duree = duree;
-
     }
 
     public Aleas getAlea() {

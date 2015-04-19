@@ -7,13 +7,11 @@ public class Avion extends Agent {
     private int      carburant;
     private Scenario scenario;
     private Etat     etat;
-    private int      nbMouvements;
 
     public Avion(String nomAgent) {
         super(nomAgent);
         this.carburant = 0;
         this.etat = Etat.NOMINAL;
-        nbMouvements = 0;
     }
 
     public Avion(String nomAgent, int fuel, Scenario scene, Etat etat) {
@@ -21,26 +19,28 @@ public class Avion extends Agent {
         this.carburant = fuel;
         this.scenario = scene;
         this.etat = etat;
-        nbMouvements = 0;
     }
 
     public void bouge() {
         scenario.nouvelleBalise();
 
         if (scenario.getBaliseActuelle().getAlea() != Balise.Aleas.RAS)
-            MoteurInference.gestionAleasAvion(scenario.getBaliseActuelle().getAlea());
+            MoteurInference.gestionAleasAvion(this, scenario.getBaliseActuelle().getAlea());
 
-        nbMouvements += 1;
         carburant -= 1;
+    }
+
+    public void demiTour() {
+        scenario.demiTour();
     }
     
     public int getCarburant() {
 		return carburant;
 	}
 
-	public void setCarburant(int carburant) {
-		this.carburant = carburant;
-	}
+    public void diminueCarburant(int diminution) {
+        this.carburant -= diminution;
+    }
 
 	public Scenario getScenario() {
 		return scenario;

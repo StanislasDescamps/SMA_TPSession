@@ -38,5 +38,15 @@ public class Scenario {
     private void inverserListeBalises() {
         Collections.reverse(balises);
     }
+
+    public void demiTour() {
+        balises = new ArrayList<>(balisesPassees);
+        inverserListeBalises();
+        balisesPassees = new ArrayList<>();
+    }
+
+    public ArrayList<Balise> getBalises() { return balises; }
+
+    public ArrayList<Balise> getBalisesPassees() { return balisesPassees; }
 }
 

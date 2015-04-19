@@ -31,14 +31,14 @@ public class Environnement {
             // Logic //////////////////////////////////////////////////////////////
 
             // Cree un aleas aleatoire sur une balise, ou pas
-//            if (rand.nextInt(1) == 1) {
-//                int aleasIndex = rand.nextInt(Balise.Aleas.values().length - 1);
-//                int aleasDuree = rand.nextInt(4 - 2) + 1;
-//                int baliseIndex = rand.nextInt(balises.size() + 1);
-//
-//                if (balises.get(baliseIndex).getAlea() == Balise.Aleas.RAS)
-//                    balises.get(baliseIndex).changeAlea(aleasIndex, aleasDuree);
-//            }
+            if (rand.nextInt(1) == 1) {
+                int aleasIndex = rand.nextInt(Balise.Aleas.values().length - 1);
+                int aleasDuree = rand.nextInt(4 - 2) + 1;
+                int baliseIndex = rand.nextInt(balises.size() + 1);
+
+                if (balises.get(baliseIndex).getAlea() == Balise.Aleas.RAS)
+                    balises.get(baliseIndex).changeAlea(aleasIndex, aleasDuree);
+            }
 
             // Bouge avions
             for (Avion avion : avions) {
