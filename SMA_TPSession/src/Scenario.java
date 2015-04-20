@@ -30,9 +30,9 @@ public class Scenario {
         }
     }
 
-    public boolean nouvelleBalise() {
+    public boolean nouvelleBalise(String avion) {
         if (!prochainesBalises.isEmpty()) {
-            System.out.println("Balise changee de "+ baliseActuelle.getNom() +" a "+ prochainesBalises.get(0).getNom());
+            System.out.println(avion+" : Changement de position de "+ baliseActuelle.getNom() +" a "+ prochainesBalises.get(0).getNom());
             if (baliseActuelle.getNom().matches("[A-Z]{3}-[A-Z]{3}-\\d{2}"))
                 balisesPassees.add(baliseActuelle);
 

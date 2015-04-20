@@ -32,7 +32,7 @@ public class Avion extends Agent {
 
     public void bouge() {
         if (etat != Etat.ATTENTE) {
-            if (scenario.nouvelleBalise()) {
+            if (scenario.nouvelleBalise(getNomAgent())) {
                 if (scenario.getBaliseActuelle().getAlea() != Balise.Aleas.RAS)
                     MoteurInference.gestionAleasAvion(this, scenario.getBaliseActuelle().getAlea());
 
