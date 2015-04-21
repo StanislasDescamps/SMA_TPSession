@@ -35,10 +35,6 @@ public class Avion extends Agent {
             if (scenario.nouvelleBalise()) {
                 if (scenario.getBaliseActuelle().getAlea() != Balise.Aleas.RAS)
                     MoteurInference.gestionAleasAvion(this, scenario.getBaliseActuelle().getAlea());
-
-//                System.out.println("L'avion ["+ nomAgent +"] "+ scenario.getDepart() +"-"+ scenario.getArrivee()
-//                                   +" bouge de "+ scenario.getBalisesPassees().get(scenario.getBalisesPassees().size()-1).getNom()
-//                                   +" a "+ scenario.getProchainesBalises().get(0).getNom());
                 carburant -= 1;
                 scenario.getProchainesBalises().remove(0);
             } else {

@@ -28,10 +28,6 @@ public class Aeroport extends Agent {
         return IATACode;
     }
 
-    public void setIATACode(String iATACode) {
-        IATACode = iATACode;
-    }
-
     public ArrayList<Avion> getEnAttenteAtterissage() {
         return enAttenteAtterissage;
     }
@@ -42,9 +38,5 @@ public class Aeroport extends Agent {
 
     public ArrayList<Avion> getEnAttenteDecollage() {
         return enAttenteDecollage;
-    }
-
-    public void setEnAttenteDecollage(ArrayList<Avion> enAttenteDecollage) {
-        this.enAttenteDecollage = enAttenteDecollage;
     }
 }
