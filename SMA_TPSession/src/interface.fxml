@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?scenebuilder-stylesheet ../res/windowStyle.css?>
 
-<GridPane id="MainGridPane" alignment="CENTER" gridLinesVisible="false" hgap="10.0" minHeight="800.0" minWidth="800.0" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="interfaceController">
+<GridPane id="MainGridPane" alignment="CENTER" gridLinesVisible="false" hgap="0.0" minHeight="-1.0" minWidth="-1.0" prefHeight="800.0" prefWidth="1000.0" vgap="0.0" fx:controller="interfaceController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <Pane id="MainPane" prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+    <Pane id="MainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
       <children>
         <Circle fx:id="LIL_BOD_01" fill="BLACK" layoutX="440.0" layoutY="74.0" radius="10.0" stroke="GOLD" strokeType="INSIDE" strokeWidth="2.0" />
         <Circle fx:id="LIL_BOD_02" fill="BLACK" layoutX="389.0" layoutY="124.0" radius="10.0" stroke="GOLD" strokeType="INSIDE" strokeWidth="2.0" />
@@ -64,9 +61,37 @@
         <Circle fx:id="LYS_NCE_01" fill="BLACK" layoutX="627.0" layoutY="506.0" radius="10.0" stroke="GOLD" strokeType="INSIDE" strokeWidth="2.0" />
       </children>
     </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+      <children>
+        <Circle fill="WHITE" layoutX="24.0" layoutY="59.0" radius="10.0" stroke="GOLD" strokeType="INSIDE" strokeWidth="2.0" />
+        <Label layoutX="20.0" layoutY="14.0" text="ALEAS">
+          <font>
+            <Font size="18.0" fx:id="x1" />
+          </font>
+        </Label>
+        <Label layoutX="46.0" layoutY="51.0" text="Aucun aleas" />
+        <Circle fill="WHITE" layoutX="24.0" layoutY="89.0" radius="10.0" stroke="BLUE" strokeType="INSIDE" strokeWidth="2.0" />
+        <Label layoutX="46.0" layoutY="81.0" text="Turbulences" />
+        <Circle fill="WHITE" layoutX="24.0" layoutY="119.0" radius="10.0" stroke="RED" strokeType="INSIDE" strokeWidth="2.0" />
+        <Label layoutX="46.0" layoutY="111.0" text="Orage" />
+        <Circle fill="WHITE" layoutX="24.0" layoutY="153.0" radius="10.0" stroke="PURPLE" strokeType="INSIDE" strokeWidth="2.0" />
+        <Label layoutX="46.0" layoutY="145.0" text="Crash" />
+        <Separator layoutX="2.0" layoutY="216.0" prefWidth="200.0" />
+        <Circle fill="WHITE" layoutX="20.0" layoutY="276.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
+        <Label layoutX="42.0" layoutY="268.0" text="Oui" />
+        <Label font="$x1" layoutX="14.0" layoutY="233.0" text="PRESENCE D'AVIONS" />
+        <Circle fill="BLACK" layoutX="20.0" layoutY="309.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
+        <Label layoutX="42.0" layoutY="301.0" text="Non" />
+        <Separator layoutX="10.0" layoutY="359.0" prefWidth="200.0" />
+        <Label font="$x1" layoutX="14.0" layoutY="376.0" text="VOLS EN COURS" />
+        <Circle fill="WHITE" layoutX="24.0" layoutY="185.0" radius="10.0" stroke="LIGHTGREY" strokeType="INSIDE" strokeWidth="2.0" />
+        <Label layoutX="46.0" layoutY="177.0" text="Atterissage forcé" />
+      </children>
+    </Pane>
   </children>
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="893.0" minWidth="10.0" prefWidth="796.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="211.0" minWidth="10.0" prefWidth="204.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />

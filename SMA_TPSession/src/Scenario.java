@@ -44,7 +44,8 @@ public class Scenario {
     }
 
     public Balise getBaliseActuelle() {
-        return prochainesBalises.get(0);
+//        return prochainesBalises.get(0);
+        return baliseActuelle;
     }
 
     private void inverserListeBalises() {

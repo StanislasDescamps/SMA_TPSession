@@ -54,9 +54,11 @@ public class MoteurInference {
         System.out.println("Alea sur la balise " + avion.getScenario().getBaliseActuelle().getNom() + ". Type: " + alea.toString());
         switch (alea) {
             case ORAGE:
-                if(avion.getScenario().getBalisesPassees().size() <= avion.getCarburant())
-                    avion.demiTour();
-                else if (rand.nextInt(1) == 1) {// Touche par l'orage
+                // TODO: Genere un bug, a investiguer
+//                if(avion.getScenario().getBalisesPassees().size() <= avion.getCarburant())
+//                    avion.demiTour();
+//                else
+                if (rand.nextInt(1) == 1) {// Touche par l'orage
                     avion.setEtat(Avion.Etat.AVARIE);
                     System.out.println("L'avion est touche par l'orage");
                 }

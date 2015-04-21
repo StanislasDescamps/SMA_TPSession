@@ -7,8 +7,6 @@ public class Environnement {
     public static final ArrayList<Balise>   balises   = new ArrayList<>();
     public static final ArrayList<Scenario> scenarios = new ArrayList<>();
 
-    private boolean isRunning            = false;
-    private int     secondsBeforeRefresh = 1;
 
     public Environnement() {
         remplirAeroports();
@@ -17,71 +15,65 @@ public class Environnement {
         remplirScenarios();
     }
 
-    public void run() {
-        long lastTime, currentTime;
-        isRunning = true;
+    public static void run() {
         Random rand = new Random();
 
-        while (isRunning) {
-            lastTime = System.currentTimeMillis();
+        System.out.println("/////////////////////////////////////////////////////////////////////////////");
+        // BALISES
+        // Cree un aleas aleatoire sur une balise, ou pas
+        if (rand.nextInt(2) == 1) {
+            int aleasIndex = rand.nextInt(Balise.Aleas.values().length - 1);
+            int aleasDuree = rand.nextInt(6 - 3) + 3;
+            int baliseIndex = rand.nextInt(balises.size());
 
-            // Logic //////////////////////////////////////////////////////////////
-            System.out.println("/////////////////////////////////////////////////////////////////////////////");
-            // Cree un aleas aleatoire sur une balise, ou pas
-            if (rand.nextInt(2) == 1) {
-                int aleasIndex = rand.nextInt(Balise.Aleas.values().length - 1);
-                int aleasDuree = rand.nextInt(4 - 2) + 1;
-                int baliseIndex = rand.nextInt(balises.size());
-
-                if (balises.get(baliseIndex).getAlea() == Balise.Aleas.RAS)
-                    balises.get(baliseIndex).changeAlea(aleasIndex, aleasDuree);
-            }
-
-            // Traitement aeroports
-            // Tri des avions a l'arrivee (carburant + etat)
-            MoteurInference.prioriteArrivee();
-
-            // Atterrissage d'un avion et placement dans liste de decollage
-            for (Aeroport aeroport : aeroports) {
-                if (!aeroport.getEnAttenteAtterissage().isEmpty()) {
-                    aeroport.getEnAttenteAtterissage().get(0).setScenario(
-                            new Scenario(
-                                    aeroport.getIATACode(),
-                                    Aeroport.nextDestination(aeroport.getIATACode())
-                            ));
-                    aeroport.getEnAttenteDecollage().add(aeroport.getEnAttenteAtterissage().get(0));
-                    aeroport.getEnAttenteAtterissage().remove(0);
-// System.out.println(aeroport.getEnAttenteDecollage().get(0).getNomAgent() + " est bien arriv� � " + aeroport.getNomAgent() + ". Il repartira bientot pour " + nextDestination);
-                }
-            }
-
-            // Bouge avions
-            for (Aeroport aeroport : aeroports)
-                if (!aeroport.getEnAttenteDecollage().isEmpty()) {
-                    aeroport.getEnAttenteDecollage().get(0).setEtat(Avion.Etat.NOMINAL);
-                    System.out.println("[" + aeroport.getEnAttenteDecollage().get(0).getNomAgent() + "] "
-                                       + aeroport.getEnAttenteDecollage().get(0).getScenario().getDepart()
-                                       + "-"
-                                       + aeroport.getEnAttenteDecollage().get(0).getScenario().getArrivee() +
-                                       " pret a partir."
-                                      );
-                    aeroport.getEnAttenteDecollage().remove(0);
-                }
-
-            for (Avion avion : avions) {
-                avion.bouge();
-            }
-
-            // Logic end //////////////////////////////////////////////////////////
-
-            currentTime = System.currentTimeMillis();
-            if (currentTime < lastTime + secondsBeforeRefresh * 1000)
-                try {
-                    Thread.sleep(lastTime + secondsBeforeRefresh * 1000 - currentTime);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            if (balises.get(baliseIndex).getAlea() == Balise.Aleas.RAS)
+                balises.get(baliseIndex).changeAlea(aleasIndex, aleasDuree);
         }
+
+        for (Balise balise : balises) {
+            if (balise.getAlea() != Balise.Aleas.RAS) {
+                if (balise.getDureeAlea() == 0)
+                    balise.setAlea(Balise.Aleas.RAS);
+                else
+                    balise.diminueDureeAlea();
+            }
+        }
+
+        // Traitement aeroports
+        // Tri des avions a l'arrivee (carburant + etat)
+        MoteurInference.prioriteArrivee();
+
+        // Atterrissage d'un avion et placement dans liste de decollage
+        for (Aeroport aeroport : aeroports) {
+            if (!aeroport.getEnAttenteAtterissage().isEmpty()) {
+                aeroport.getEnAttenteAtterissage().get(0).setScenario(
+                        new Scenario(
+                                aeroport.getIATACode(),
+                                Aeroport.nextDestination(aeroport.getIATACode())
+                        ));
+                aeroport.getEnAttenteDecollage().add(aeroport.getEnAttenteAtterissage().get(0));
+                aeroport.getEnAttenteAtterissage().remove(0);
+            }
+        }
+
+        // Bouge avions
+        for (Aeroport aeroport : aeroports)
+            if (!aeroport.getEnAttenteDecollage().isEmpty()) {
+                aeroport.getEnAttenteDecollage().get(0).setEtat(Avion.Etat.NOMINAL);
+                System.out.println("[" + aeroport.getEnAttenteDecollage().get(0).getNomAgent() + "] "
+                                   + aeroport.getEnAttenteDecollage().get(0).getScenario().getDepart()
+                                   + "-"
+                                   + aeroport.getEnAttenteDecollage().get(0).getScenario().getArrivee() +
+                                   " pret a partir."
+                                  );
+                aeroport.getEnAttenteDecollage().remove(0);
+            }
+
+        for (Avion avion : avions) {
+            avion.bouge();
+        }
+
+
     }
 
     private void remplirAeroports() {
